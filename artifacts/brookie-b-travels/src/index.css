@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
@@ -75,48 +75,48 @@
   --elevate-1: rgba(0,0,0, .03);
   --elevate-2: rgba(0,0,0, .08);
 
-  /* Deep sophisticated teal and warm sand */
-  --background: 48 20% 97%; /* #FAF9F6 Warm off-white */
-  --foreground: 160 17% 20%; /* #2C3E38 Deep elegant green/teal */
+  /* Warm editorial neutrals with sand accents */
+  --background: 42 30% 97%;
+  --foreground: 30 9% 14%;
 
-  --border: 160 10% 85%;
-  --input: 160 10% 85%;
-  --ring: 160 17% 20%;
+  --border: 32 18% 86%;
+  --input: 32 18% 86%;
+  --ring: 30 8% 17%;
 
   --card: 0 0% 100%;
-  --card-foreground: 160 17% 20%;
-  --card-border: 160 10% 85%;
+  --card-foreground: 30 8% 17%;
+  --card-border: 32 18% 86%;
 
   --popover: 0 0% 100%;
-  --popover-foreground: 160 17% 20%;
-  --popover-border: 160 10% 85%;
+  --popover-foreground: 30 8% 17%;
+  --popover-border: 30 10% 84%;
 
-  --primary: 160 17% 20%; /* Deep green */
+  --primary: 30 8% 17%; /* Warm charcoal */
   --primary-foreground: 48 20% 97%;
 
-  --secondary: 35 45% 75%; /* Warm sand / terracotta hint */
-  --secondary-foreground: 160 17% 20%;
+  --secondary: 34 42% 82%;
+  --secondary-foreground: 30 8% 17%;
 
-  --muted: 160 10% 92%;
-  --muted-foreground: 160 10% 45%;
+  --muted: 38 28% 92%;
+  --muted-foreground: 28 8% 40%;
 
-  --accent: 35 45% 75%;
-  --accent-foreground: 160 17% 20%;
+  --accent: 28 42% 72%;
+  --accent-foreground: 30 8% 17%;
 
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 98%;
 
-  --chart-1: 160 17% 20%;
+  --chart-1: 30 8% 17%;
   --chart-2: 35 45% 75%;
-  --chart-3: 160 10% 45%;
+  --chart-3: 30 7% 42%;
   --chart-4: 48 20% 90%;
   --chart-5: 0 0% 15%;
 
-  --app-font-sans: 'DM Sans', sans-serif;
-  --app-font-serif: 'Playfair Display', serif;
+  --app-font-sans: 'Figtree', sans-serif;
+  --app-font-serif: 'Source Serif 4', serif;
   --app-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   
-  --radius: 0rem; /* Sharp elegant corners for editorial feel */
+  --radius: 1rem;
 }
 
 /* Dark mode overrides if needed, though this is primarily light mode brand */
@@ -146,12 +146,51 @@
   }
   body {
     @apply font-sans antialiased bg-background text-foreground;
+    text-rendering: optimizeLegibility;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif;
+    letter-spacing: -0.035em;
   }
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+.instagram-marquee {
+  width: 100%;
+  overflow: hidden;
+}
+
+.instagram-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 1rem;
+  padding-inline: 1.5rem;
+  animation: instagram-marquee 34s linear infinite;
+}
+
+.instagram-marquee:hover .instagram-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes instagram-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .instagram-marquee {
+    overflow-x: auto;
+  }
+
+  .instagram-marquee-track {
+    animation: none;
+  }
 }
