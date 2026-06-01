@@ -1,0 +1,38 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "97EAG844ZauDtlylGyHkJ"
+uri = "file://artifacts/brookie-b-travels/public/hero-bg.png"
+type = "image"
+title = "Cinematic aerial coastline at dusk"
+
+[[generated]]
+id = "D4t7xgcyUqtKt-BQ4i1RK"
+uri = "file://artifacts/brookie-b-travels/public/about-image.png"
+type = "image"
+title = "Warm upscale travel scene"
+
+[[generated]]
+id = "LXqJ9qZ7U_kLzxz8FoE8b"
+uri = "file://artifacts/brookie-b-travels/public/trip-weekend.png"
+type = "image"
+title = "Weekend getaway destination"
+
+[[generated]]
+id = "7h7nfXeCqYah58t44321V"
+uri = "file://artifacts/brookie-b-travels/public/trip-international.png"
+type = "image"
+title = "Tropical international escape"
+
+[[generated]]
+id = "jaLLt6uhKFB0gvX9n6wJD"
+uri = "file://artifacts/brookie-b-travels/public/trip-cruise.png"
+type = "image"
+title = "Luxury cruise ship at sea"
+
+[[generated]]
+id = "mfC4FS8wFyKlQY6XA-PaW"
+uri = "file://artifacts/brookie-b-travels/public/trip-group.png"
+type = "image"
+title = "Group travel gathering"
