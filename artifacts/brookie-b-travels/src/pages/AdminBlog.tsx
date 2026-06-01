@@ -1,7 +1,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { createBlogPost } from "@/lib/blog-api";
+import { clearBlogAdminToken, createBlogPost, getBlogAdminToken, loginBlogAdmin } from "@/lib/blog-api";
 import type { BlogPost } from "@/lib/blog";
 
 function slugify(value: string) {
@@ -31,6 +31,11 @@ function formatDate(date: string) {
 }
 
 export default function AdminBlog() {
+  const [authToken, setAuthToken] = useState("");
+  const [loginUsername, setLoginUsername] = useState("brooke");
+  const [loginPassword, setLoginPassword] = useState("");
+  const [loginStatus, setLoginStatus] = useState<string | null>(null);
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [title, setTitle] = useState("");
   const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
   const [author, setAuthor] = useState("Brooke");
@@ -45,7 +50,31 @@ export default function AdminBlog() {
 
   useEffect(() => {
     document.title = "New Blog Post | Brookie B Travels";
+    setAuthToken(getBlogAdminToken());
   }, []);
+
+  async function handleLogin(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setIsLoggingIn(true);
+    setLoginStatus(null);
+
+    try {
+      const token = await loginBlogAdmin(loginUsername, loginPassword);
+      setAuthToken(token);
+      setLoginPassword("");
+    } catch (error) {
+      setLoginStatus(error instanceof Error ? error.message : "Unable to log in.");
+    } finally {
+      setIsLoggingIn(false);
+    }
+  }
+
+  function handleLogout() {
+    clearBlogAdminToken();
+    setAuthToken("");
+    setStatus(null);
+    setCreatedPost(null);
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -61,24 +90,31 @@ export default function AdminBlog() {
         .map((paragraph) => paragraph.trim())
         .filter(Boolean);
 
-      const post = await createBlogPost({
-        slug,
-        title,
-        date,
-        displayDate: formatDate(date),
-        author,
-        excerpt,
-        featuredImage: "",
-        featuredImageAlt,
-        imageBase64,
-        readingTime: `${Math.max(3, Math.ceil(body.split(/\s+/).filter(Boolean).length / 200))} min read`,
-        keywords: keywords.split(",").map((keyword) => keyword.trim()).filter(Boolean),
-        paragraphs,
-      });
+      const post = await createBlogPost(
+        {
+          slug,
+          title,
+          date,
+          displayDate: formatDate(date),
+          author,
+          excerpt,
+          featuredImage: "",
+          featuredImageAlt,
+          imageBase64,
+          readingTime: `${Math.max(3, Math.ceil(body.split(/\s+/).filter(Boolean).length / 200))} min read`,
+          keywords: keywords.split(",").map((keyword) => keyword.trim()).filter(Boolean),
+          paragraphs,
+        },
+        authToken,
+      );
 
       setCreatedPost(post);
       setStatus("Blog post saved.");
     } catch (error) {
+      if (error instanceof Error && error.message.toLowerCase().includes("username or password")) {
+        handleLogout();
+      }
+
       setStatus(error instanceof Error ? error.message : "Unable to save blog post.");
     } finally {
       setIsSubmitting(false);
@@ -108,12 +144,69 @@ export default function AdminBlog() {
           </p>
           <h1 className="font-serif text-5xl md:text-6xl leading-tight mb-5">Add a Blog Post</h1>
           <p className="text-muted-foreground leading-8">
-            Draft a post, upload a featured image, and save it to the local blog backend. Paragraphs are created from
+            Log in, draft a post, upload a featured image, and save it to the blog backend. Paragraphs are created from
             blank lines in the body field.
           </p>
         </div>
 
+        {!authToken && (
+          <form onSubmit={handleLogin} className="space-y-6 rounded-3xl border border-border/80 bg-white p-6 md:p-8">
+            <div>
+              <h2 className="mb-3 font-serif text-3xl">Blog Admin Login</h2>
+              <p className="text-sm leading-6 text-muted-foreground">
+                Enter the blog admin username and password before creating new posts.
+              </p>
+            </div>
+
+            <label className="block">
+              <span className="mb-2 block text-sm font-semibold">Username</span>
+              <input
+                value={loginUsername}
+                onChange={(event) => setLoginUsername(event.target.value)}
+                required
+                autoComplete="username"
+                className="w-full rounded-2xl border border-border bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-foreground/20"
+              />
+            </label>
+
+            <label className="block">
+              <span className="mb-2 block text-sm font-semibold">Password</span>
+              <input
+                type="password"
+                value={loginPassword}
+                onChange={(event) => setLoginPassword(event.target.value)}
+                required
+                autoComplete="current-password"
+                className="w-full rounded-2xl border border-border bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-foreground/20"
+              />
+            </label>
+
+            <Button
+              type="submit"
+              disabled={isLoggingIn}
+              className="h-12 rounded-full px-7 text-xs uppercase tracking-[0.16em]"
+            >
+              {isLoggingIn ? "Logging in..." : "Log in"}
+            </Button>
+
+            {loginStatus && <p className="text-sm text-muted-foreground">{loginStatus}</p>}
+          </form>
+        )}
+
+        {authToken && (
         <form onSubmit={handleSubmit} className="space-y-6 rounded-3xl border border-border/80 bg-white p-6 md:p-8">
+          <div className="flex flex-col justify-between gap-4 border-b border-border pb-6 md:flex-row md:items-center">
+            <p className="text-sm text-muted-foreground">Logged in as blog admin.</p>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={handleLogout}
+              className="h-10 w-fit rounded-full px-5 text-xs uppercase tracking-[0.16em]"
+            >
+              Log out
+            </Button>
+          </div>
+
           <label className="block">
             <span className="mb-2 block text-sm font-semibold">Title</span>
             <input
@@ -219,6 +312,7 @@ export default function AdminBlog() {
             </p>
           )}
         </form>
+        )}
       </section>
     </main>
   );

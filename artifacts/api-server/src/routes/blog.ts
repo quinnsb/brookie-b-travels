@@ -1,6 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { Router, type IRouter } from "express";
+import { timingSafeEqual } from "node:crypto";
+import { Router, type IRouter, type RequestHandler } from "express";
 
 type BlogPost = {
   slug: string;
@@ -31,6 +32,48 @@ const uploadsDir = process.env["BLOG_UPLOADS_DIR"]
   ? path.resolve(process.env["BLOG_UPLOADS_DIR"])
   : path.resolve(process.cwd(), "..", "brookie-b-travels", "public", "blog-uploads");
 const dataPath = path.join(dataDir, "blog-posts.json");
+const isProduction = process.env["NODE_ENV"] === "production";
+const adminUsername = process.env["BLOG_ADMIN_USERNAME"] || (isProduction ? "" : "brooke");
+const adminPassword = process.env["BLOG_ADMIN_PASSWORD"] || (isProduction ? "" : "travel2026");
+
+function safeCompare(value: string, expected: string) {
+  const valueBuffer = Buffer.from(value);
+  const expectedBuffer = Buffer.from(expected);
+
+  if (valueBuffer.length !== expectedBuffer.length) {
+    return false;
+  }
+
+  return timingSafeEqual(valueBuffer, expectedBuffer);
+}
+
+const requireBlogAdmin: RequestHandler = (req, res, next) => {
+  const authHeader = req.get("authorization") || "";
+  const [scheme, encodedCredentials] = authHeader.split(" ");
+
+  if (!adminUsername || !adminPassword) {
+    res.status(503).json({ error: "Blog admin credentials are not configured." });
+    return;
+  }
+
+  if (scheme !== "Basic" || !encodedCredentials) {
+    res.setHeader("WWW-Authenticate", 'Basic realm="Brookie B Travels Blog Admin"');
+    res.status(401).json({ error: "Blog admin login required." });
+    return;
+  }
+
+  const credentials = Buffer.from(encodedCredentials, "base64").toString("utf8");
+  const separatorIndex = credentials.indexOf(":");
+  const username = separatorIndex >= 0 ? credentials.slice(0, separatorIndex) : "";
+  const password = separatorIndex >= 0 ? credentials.slice(separatorIndex + 1) : "";
+
+  if (!safeCompare(username, adminUsername) || !safeCompare(password, adminPassword)) {
+    res.status(401).json({ error: "Invalid blog admin username or password." });
+    return;
+  }
+
+  next();
+};
 
 function slugify(value: string) {
   return value
@@ -122,7 +165,11 @@ router.get("/blog-posts", async (_req, res, next) => {
   }
 });
 
-router.post("/blog-posts", async (req, res, next) => {
+router.post("/blog-login", requireBlogAdmin, (_req, res) => {
+  res.json({ ok: true });
+});
+
+router.post("/blog-posts", requireBlogAdmin, async (req, res, next) => {
   try {
     const input = req.body as BlogPostInput;
     const slug = slugify(input.slug || input.title || "");

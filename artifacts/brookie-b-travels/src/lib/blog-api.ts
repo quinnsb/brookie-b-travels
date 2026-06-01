@@ -1,6 +1,30 @@
 import type { BlogPost } from "@/lib/blog";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5174";
+const BLOG_AUTH_STORAGE_KEY = "brookie-b-travels-blog-admin-token";
+
+async function getErrorMessage(response: Response, fallback: string) {
+  const text = await response.text();
+
+  try {
+    const data = JSON.parse(text) as { error?: string };
+    return data.error || fallback;
+  } catch {
+    return text || fallback;
+  }
+}
+
+export function getBlogAdminToken() {
+  return window.localStorage.getItem(BLOG_AUTH_STORAGE_KEY) || "";
+}
+
+export function clearBlogAdminToken() {
+  window.localStorage.removeItem(BLOG_AUTH_STORAGE_KEY);
+}
+
+function createAuthToken(username: string, password: string) {
+  return window.btoa(`${username}:${password}`);
+}
 
 export async function fetchBlogPosts() {
   const response = await fetch(`${API_BASE_URL}/api/blog-posts`);
@@ -13,18 +37,35 @@ export async function fetchBlogPosts() {
   return data.posts || [];
 }
 
-export async function createBlogPost(post: BlogPost & { imageBase64?: string }) {
+export async function loginBlogAdmin(username: string, password: string) {
+  const token = createAuthToken(username, password);
+  const response = await fetch(`${API_BASE_URL}/api/blog-login`, {
+    method: "POST",
+    headers: {
+      Authorization: `Basic ${token}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(await getErrorMessage(response, "Invalid blog admin username or password."));
+  }
+
+  window.localStorage.setItem(BLOG_AUTH_STORAGE_KEY, token);
+  return token;
+}
+
+export async function createBlogPost(post: BlogPost & { imageBase64?: string }, authToken: string) {
   const response = await fetch(`${API_BASE_URL}/api/blog-posts`, {
     method: "POST",
     headers: {
+      Authorization: `Basic ${authToken}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify(post),
   });
 
   if (!response.ok) {
-    const text = await response.text();
-    throw new Error(text || "Unable to create blog post.");
+    throw new Error(await getErrorMessage(response, "Unable to create blog post."));
   }
 
   const data = (await response.json()) as { post: BlogPost };
