@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -18,7 +18,8 @@ export default function Home() {
     target: heroRef,
     offset: ["start start", "end start"],
   });
-  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
+  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
+  const smoothHeroY = useSpring(heroY, { stiffness: 90, damping: 30, mass: 0.2 });
 
   useEffect(() => {
     document.title = "Brookie B Travels";
@@ -120,7 +121,7 @@ export default function Home() {
         className="relative flex min-h-[680px] h-[100svh] items-center justify-center overflow-hidden bg-black sm:min-h-[640px]"
       >
         <motion.div
-          style={{ y: heroY }}
+          style={{ y: smoothHeroY }}
           className="absolute inset-x-0 -top-[12%] h-[125%] w-full will-change-transform"
           aria-hidden
         >
