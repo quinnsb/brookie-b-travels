@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { useEffect, useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -12,14 +11,6 @@ const BOOK_TRAVEL_URL = "https://brookebeneze.inteletravel.com/";
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [adminPosts, setAdminPosts] = useState<BlogPost[]>([]);
-  const heroRef = useRef<HTMLElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
-  const smoothHeroY = useSpring(heroY, { stiffness: 90, damping: 30, mass: 0.2 });
 
   useEffect(() => {
     document.title = "Brookie B Travels";
@@ -117,12 +108,10 @@ export default function Home() {
 
       <section
         id="home"
-        ref={heroRef}
         className="relative flex min-h-[680px] h-[100svh] items-center justify-center overflow-hidden bg-black sm:min-h-[640px]"
       >
-        <motion.div
-          style={{ y: smoothHeroY }}
-          className="absolute inset-x-0 -top-[12%] h-[125%] w-full will-change-transform"
+        <div
+          className="absolute inset-0 w-full"
           aria-hidden
         >
           <img
@@ -132,7 +121,7 @@ export default function Home() {
             className="w-full h-full object-cover object-center opacity-75"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/25 to-black/65" />
-        </motion.div>
+        </div>
 
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pt-20 text-center text-white sm:px-6 md:px-10">
           <p className="mb-5 text-[0.68rem] font-semibold uppercase tracking-[0.26em] text-white/85 sm:text-xs sm:tracking-[0.34em] md:text-sm">
