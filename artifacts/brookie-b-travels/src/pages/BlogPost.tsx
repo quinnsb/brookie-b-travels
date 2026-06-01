@@ -199,6 +199,8 @@ export default function BlogPost() {
             <img
               src={post.featuredImage}
               alt={post.featuredImageAlt}
+              loading="eager"
+              decoding="async"
               className="w-full aspect-[16/9] object-cover shadow-2xl rounded-3xl"
             />
           </figure>
@@ -254,6 +256,8 @@ export default function BlogPost() {
                   <img
                     src={relatedPost.featuredImage}
                     alt={relatedPost.featuredImageAlt}
+                    loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
                   />
                 </Link>

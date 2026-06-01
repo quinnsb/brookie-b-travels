@@ -181,7 +181,7 @@ export const blogPosts: BlogPost[] = [
     readingTime: "6 min read",
     excerpt:
       "Travel is unpredictable, but you do not have to handle every delay, cancellation, or hotel issue alone.",
-    featuredImage: "/faq-image.png",
+    featuredImage: "/faq-image.jpg",
     featuredImageAlt: "Brookie B Travels founder looking up inside a sandstone canyon",
     keywords: [
       "travel advisor support during trip",

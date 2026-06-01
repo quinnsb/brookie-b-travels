@@ -43,10 +43,10 @@ export default function Home() {
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 3);
   const instagramImages = [
-    { src: "/about-image.png", alt: "Brookie B Travels founder by the water" },
+    { src: "/about-image.jpg", alt: "Brookie B Travels founder by the water" },
     { src: "/valentin-lacoste-C9YxgJoXcWE-unsplash.jpg", alt: "Clear water beach cove" },
     { src: "/sara-canonici-7NzZ0btPVdE-unsplash.jpg", alt: "Colorful cliffside village in Italy" },
-    { src: "/faq-image.png", alt: "Brookie B Travels founder in a sandstone canyon" },
+    { src: "/faq-image.jpg", alt: "Brookie B Travels founder in a sandstone canyon" },
     { src: "/johannes-kopf-u2s7GQRJELM-unsplash.jpg", alt: "Scenic mountain village by the water" },
     { src: "/lens-by-benji-XjjUrYnjRHQ-unsplash.jpg", alt: "Iconic Italian city landmark" },
   ];
@@ -123,6 +123,7 @@ export default function Home() {
           <img
             src="/valentin-lacoste-C9YxgJoXcWE-unsplash.jpg"
             alt=""
+            fetchPriority="high"
             className="w-full h-full object-cover object-center opacity-75"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/25 to-black/65" />
@@ -181,6 +182,8 @@ export default function Home() {
               <img
                 src="/douglas-schneiders-8m9iqKsiJfU-unsplash.jpg"
                 alt="Paris street scene at golden hour"
+                loading="lazy"
+                decoding="async"
                 className="absolute inset-0 h-full w-full object-cover opacity-70"
               />
               <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/25 to-black/75" />
@@ -243,8 +246,10 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-12 lg:gap-20 items-center">
             <div className="relative aspect-[3/4] w-full max-w-lg mx-auto lg:mx-0">
               <img
-                src="/about-image.png"
+                src="/about-image.jpg"
                 alt="Brookie B Travels founder sitting in a heart-shaped sculpture by the water"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover shadow-xl rounded-3xl"
               />
             </div>
@@ -313,6 +318,8 @@ export default function Home() {
                 <img
                   src={trip.src}
                   alt={trip.alt}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors" />
@@ -340,8 +347,10 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-12 lg:gap-20 items-center">
             <div className="relative aspect-[4/5] w-full max-w-lg mx-auto lg:mx-0">
               <img
-                src="/faq-image.png"
+                src="/faq-image.jpg"
                 alt="Brookie B Travels founder looking up inside a sandstone canyon"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover shadow-xl rounded-3xl"
               />
             </div>
@@ -455,6 +464,8 @@ export default function Home() {
                   <img
                     src={post.featuredImage}
                     alt={post.featuredImageAlt}
+                    loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
                   />
                 </a>
@@ -495,6 +506,8 @@ export default function Home() {
             <img
               src="/johannes-kopf-u2s7GQRJELM-unsplash.jpg"
               alt="A scenic mountain village by the water"
+              loading="lazy"
+              decoding="async"
               className="absolute inset-0 h-full w-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent" />
@@ -577,6 +590,8 @@ export default function Home() {
                 <img
                   src={image.src}
                   alt={image.alt}
+                  loading="lazy"
+                  decoding="async"
                   className="aspect-square h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </a>
