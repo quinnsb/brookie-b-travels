@@ -1,6 +1,6 @@
 import type { BlogPost } from "@/lib/blog";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5174";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || (import.meta.env.PROD ? "" : "http://localhost:5174");
 const BLOG_AUTH_STORAGE_KEY = "brookie-b-travels-blog-admin-token";
 
 async function getErrorMessage(response: Response, fallback: string) {

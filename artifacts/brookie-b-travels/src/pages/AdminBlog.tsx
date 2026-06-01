@@ -13,12 +13,55 @@ function slugify(value: string) {
     .replace(/(^-|-$)/g, "");
 }
 
-function fileToDataUrl(file: File) {
+function loadImage(file: File) {
+  return new Promise<HTMLImageElement>((resolve, reject) => {
+    const image = new Image();
+    image.onload = () => {
+      URL.revokeObjectURL(image.src);
+      resolve(image);
+    };
+    image.onerror = () => {
+      URL.revokeObjectURL(image.src);
+      reject(new Error("Unable to read the featured image."));
+    };
+    image.src = URL.createObjectURL(file);
+  });
+}
+
+async function fileToDataUrl(file: File) {
+  const image = await loadImage(file);
+  const maxDimension = 1600;
+  const scale = Math.min(1, maxDimension / Math.max(image.naturalWidth, image.naturalHeight));
+  const width = Math.round(image.naturalWidth * scale);
+  const height = Math.round(image.naturalHeight * scale);
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+
+  const context = canvas.getContext("2d");
+
+  if (!context) {
+    throw new Error("Unable to process the featured image.");
+  }
+
+  context.drawImage(image, 0, 0, width, height);
+
   return new Promise<string>((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(String(reader.result));
-    reader.onerror = () => reject(reader.error);
-    reader.readAsDataURL(file);
+    canvas.toBlob(
+      (blob) => {
+        if (!blob) {
+          reject(new Error("Unable to compress the featured image."));
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = () => resolve(String(reader.result));
+        reader.onerror = () => reject(reader.error);
+        reader.readAsDataURL(blob);
+      },
+      "image/jpeg",
+      0.82,
+    );
   });
 }
 
@@ -144,8 +187,8 @@ export default function AdminBlog() {
           </p>
           <h1 className="font-serif text-5xl md:text-6xl leading-tight mb-5">Add a Blog Post</h1>
           <p className="text-muted-foreground leading-8">
-            Log in, draft a post, upload a featured image, and save it to the blog backend. Paragraphs are created from
-            blank lines in the body field.
+            Log in, draft a post, upload a featured image, and publish it to the blog. Paragraphs are created from blank
+            lines in the body field, and images are compressed before upload.
           </p>
         </div>
 
