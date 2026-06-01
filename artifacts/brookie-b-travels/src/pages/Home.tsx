@@ -140,11 +140,11 @@ export default function Home() {
             Elevate your travel with curated itineraries, smart logistics, and experiences that feel truly special. We
             will create unforgettable trips together that leave room for discovery, ease, and connection.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button
               variant="secondary"
               size="lg"
-              className="w-full sm:w-auto uppercase tracking-[0.16em] text-xs h-14 px-10 rounded-full bg-white text-black hover:bg-white/90"
+              className="h-14 w-full justify-center rounded-full bg-white px-10 text-xs uppercase tracking-[0.16em] text-black hover:bg-white/90 sm:w-[178px]"
               onClick={() => scrollToSection("about")}
             >
               About Me
@@ -152,10 +152,10 @@ export default function Home() {
             <Button
               variant="outline"
               size="lg"
-              className="w-full sm:w-auto uppercase tracking-[0.16em] text-xs h-14 px-10 rounded-full border-white/80 text-white hover:bg-white hover:text-black bg-white/5 backdrop-blur-sm"
+              className="h-14 w-full justify-center rounded-full border-white/80 bg-white/5 px-10 text-xs uppercase tracking-[0.16em] text-white backdrop-blur-sm hover:bg-white hover:text-black sm:w-[178px]"
               onClick={() => { window.location.href = BOOK_EMAIL; }}
             >
-              Book Travel <ArrowRight className="ml-2 h-4 w-4" />
+              Book Travel <ArrowRight className="ml-1 h-4 w-4" />
             </Button>
           </div>
         </div>
@@ -163,14 +163,14 @@ export default function Home() {
 
       <section id="services" className="py-24 md:py-28 bg-background">
         <div className="mx-auto w-full max-w-7xl px-6 md:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-14 items-end mb-12">
+          <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-6 lg:gap-12 items-start mb-12">
             <div>
               <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4">What I Do</p>
               <h2 className="font-serif text-4xl md:text-6xl leading-tight text-foreground mb-6">
                 The planning experience should feel as good as the trip.
               </h2>
             </div>
-            <p className="text-muted-foreground text-lg leading-8 lg:pb-3">
+            <p className="max-w-xl text-muted-foreground text-lg leading-8 lg:pt-12">
               I turn the overwhelming parts of travel into a clear, thoughtful plan: where to stay, what to skip, how
               to move around, and how to make the whole trip feel personal instead of copy-pasted.
             </p>
