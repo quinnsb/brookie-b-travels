@@ -7,7 +7,7 @@ import { blogPosts, type BlogPost } from "@/lib/blog";
 import { fetchBlogPosts } from "@/lib/blog-api";
 import { ArrowRight, Plane, Map, Compass, Instagram } from "lucide-react";
 
-const BOOK_EMAIL = "mailto:brookiebtravels@gmail.com";
+const BOOK_TRAVEL_URL = "https://brookebeneze.inteletravel.com/";
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -62,6 +62,10 @@ export default function Home() {
         : "text-foreground/75 hover:bg-foreground/8 hover:text-foreground after:bg-foreground"
     }`;
 
+  const openBookTravel = () => {
+    window.open(BOOK_TRAVEL_URL, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <div className="min-h-screen w-full font-sans bg-background text-foreground">
       <nav
@@ -103,7 +107,7 @@ export default function Home() {
           <Button
             variant={isScrolled ? "default" : "secondary"}
             className="uppercase tracking-[0.16em] text-xs h-11 px-6 rounded-full font-semibold"
-            onClick={() => { window.location.href = BOOK_EMAIL; }}
+            onClick={openBookTravel}
           >
             Book Travel
           </Button>
@@ -154,7 +158,7 @@ export default function Home() {
               variant="outline"
               size="lg"
               className="h-14 w-full justify-center rounded-full border-white/80 bg-white/5 px-10 text-xs uppercase tracking-[0.16em] text-white backdrop-blur-sm hover:bg-white hover:text-black sm:w-[178px]"
-              onClick={() => { window.location.href = BOOK_EMAIL; }}
+              onClick={openBookTravel}
             >
               Book Travel <ArrowRight className="ml-1 h-4 w-4" />
             </Button>
@@ -286,7 +290,7 @@ export default function Home() {
 
               <Button
                 className="uppercase tracking-[0.16em] text-xs h-14 px-10 rounded-full bg-primary hover:bg-primary/90 text-white"
-                onClick={() => { window.location.href = BOOK_EMAIL; }}
+                onClick={openBookTravel}
               >
                 Book your next vacation with me <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
@@ -335,7 +339,7 @@ export default function Home() {
           <Button
             variant="outline"
             className="uppercase tracking-[0.16em] text-xs h-14 px-10 rounded-full border-primary text-primary hover:bg-primary hover:text-white"
-            onClick={() => { window.location.href = BOOK_EMAIL; }}
+            onClick={openBookTravel}
           >
             Book Travel <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
@@ -550,7 +554,7 @@ export default function Home() {
 
             <Button
               className="h-14 w-fit rounded-full bg-white px-10 text-xs uppercase tracking-[0.16em] text-primary hover:bg-white/90"
-              onClick={() => { window.location.href = BOOK_EMAIL; }}
+              onClick={openBookTravel}
             >
               Contact us <ArrowRight className="ml-2 h-4 w-4" />
             </Button>

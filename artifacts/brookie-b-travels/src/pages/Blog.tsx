@@ -6,7 +6,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { blogPosts, type BlogPost } from "@/lib/blog";
 import { fetchBlogPosts } from "@/lib/blog-api";
 
-const BOOK_EMAIL = "mailto:brookiebtravels@gmail.com";
+const BOOK_TRAVEL_URL = "https://brookebeneze.inteletravel.com/";
 
 function setMetaDescription(content: string) {
   let meta = document.querySelector<HTMLMetaElement>('meta[name="description"]');
@@ -22,6 +22,9 @@ function setMetaDescription(content: string) {
 
 export default function Blog() {
   const [adminPosts, setAdminPosts] = useState<BlogPost[]>([]);
+  const openBookTravel = () => {
+    window.open(BOOK_TRAVEL_URL, "_blank", "noopener,noreferrer");
+  };
 
   useEffect(() => {
     document.title = "Travel Blog | Brookie B Travels";
@@ -66,9 +69,7 @@ export default function Blog() {
 
           <Button
             className="uppercase tracking-[0.16em] text-xs h-11 px-6 rounded-full"
-            onClick={() => {
-              window.location.href = BOOK_EMAIL;
-            }}
+            onClick={openBookTravel}
           >
             Book Travel
           </Button>

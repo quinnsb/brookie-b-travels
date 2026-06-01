@@ -2,6 +2,8 @@ import { Mail } from "lucide-react";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 
 const BOOK_EMAIL = "mailto:brookiebtravels@gmail.com";
+const FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61558400948447";
+const INSTAGRAM_URL = "https://www.instagram.com/brookiebtravels/";
 
 const footerLinks = [
   { href: "/", label: "Home" },
@@ -36,10 +38,22 @@ export function SiteFooter() {
           </nav>
 
           <div className="flex justify-center md:justify-end space-x-6">
-            <a href="#" aria-label="Facebook" className="text-foreground/80 hover:text-foreground transition-colors">
+            <a
+              href={FACEBOOK_URL}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Facebook"
+              className="text-foreground/80 hover:text-foreground transition-colors"
+            >
               <FaFacebook className="w-6 h-6" />
             </a>
-            <a href="#" aria-label="Instagram" className="text-foreground/80 hover:text-foreground transition-colors">
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram"
+              className="text-foreground/80 hover:text-foreground transition-colors"
+            >
               <FaInstagram className="w-6 h-6" />
             </a>
             <a

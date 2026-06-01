@@ -6,7 +6,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { blogPosts, type BlogPost as BlogPostType } from "@/lib/blog";
 import { fetchBlogPosts } from "@/lib/blog-api";
 
-const BOOK_EMAIL = "mailto:brookiebtravels@gmail.com";
+const BOOK_TRAVEL_URL = "https://brookebeneze.inteletravel.com/";
 
 function setMetaDescription(content: string) {
   let meta = document.querySelector<HTMLMetaElement>('meta[name="description"]');
@@ -35,6 +35,9 @@ export default function BlogPost() {
     .filter((blogPost) => blogPost.slug !== post?.slug)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 3);
+  const openBookTravel = () => {
+    window.open(BOOK_TRAVEL_URL, "_blank", "noopener,noreferrer");
+  };
 
   useEffect(() => {
     fetchBlogPosts()
@@ -156,9 +159,7 @@ export default function BlogPost() {
 
           <Button
             className="uppercase tracking-[0.16em] text-xs h-11 px-6 rounded-full"
-            onClick={() => {
-              window.location.href = BOOK_EMAIL;
-            }}
+            onClick={openBookTravel}
           >
             Book Travel
           </Button>
@@ -219,9 +220,7 @@ export default function BlogPost() {
             </p>
             <Button
               className="uppercase tracking-[0.16em] text-xs h-14 px-10 rounded-full"
-              onClick={() => {
-                window.location.href = BOOK_EMAIL;
-              }}
+              onClick={openBookTravel}
             >
               Book Travel <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
