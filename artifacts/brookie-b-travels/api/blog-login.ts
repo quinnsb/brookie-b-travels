@@ -1,4 +1,4 @@
-import { handleError, requireBlogAdmin } from "./_blog";
+import { handleError, requireBlogAdmin } from "./_blog.js";
 
 export default function handler(req: any, res: any) {
   try {

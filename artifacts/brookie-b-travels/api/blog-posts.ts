@@ -1,4 +1,4 @@
-import { createOrUpdatePost, handleError, parseBody, readPosts, requireBlogAdmin } from "./_blog";
+import { createOrUpdatePost, handleError, parseBody, readPosts, requireBlogAdmin } from "./_blog.js";
 
 export default async function handler(req: any, res: any) {
   try {
