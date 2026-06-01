@@ -67,20 +67,20 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen w-full font-sans bg-background text-foreground">
+    <div className="min-h-screen w-full overflow-x-hidden font-sans bg-background text-foreground">
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled ? "bg-background/90 backdrop-blur-xl border-b border-border/70 py-3" : "bg-transparent py-5"
         }`}
       >
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 md:px-10">
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 md:px-10">
           <button
             type="button"
             className="flex-shrink-0"
             onClick={() => scrollToSection("home")}
           >
             <span
-              className={`font-serif text-xl leading-none tracking-[-0.04em] transition-colors md:text-2xl ${
+              className={`font-serif text-lg leading-none tracking-[-0.04em] transition-colors sm:text-xl md:text-2xl ${
                 isScrolled ? "text-foreground" : "text-white"
               }`}
             >
@@ -106,7 +106,7 @@ export default function Home() {
           </div>
           <Button
             variant={isScrolled ? "default" : "secondary"}
-            className="uppercase tracking-[0.16em] text-xs h-11 px-6 rounded-full font-semibold"
+            className="h-10 rounded-full px-4 text-[0.65rem] font-semibold uppercase tracking-[0.14em] sm:h-11 sm:px-6 sm:text-xs sm:tracking-[0.16em]"
             onClick={openBookTravel}
           >
             Book Travel
@@ -117,7 +117,7 @@ export default function Home() {
       <section
         id="home"
         ref={heroRef}
-        className="relative h-[100dvh] min-h-[640px] flex items-center justify-center overflow-hidden bg-black"
+        className="relative flex min-h-[680px] h-[100svh] items-center justify-center overflow-hidden bg-black sm:min-h-[640px]"
       >
         <motion.div
           style={{ y: heroY }}
@@ -133,23 +133,23 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/25 to-black/65" />
         </motion.div>
 
-        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 md:px-10 text-center text-white pt-20">
-          <p className="text-xs md:text-sm tracking-[0.34em] uppercase mb-6 font-semibold text-white/85">
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pt-20 text-center text-white sm:px-6 md:px-10">
+          <p className="mb-5 text-[0.68rem] font-semibold uppercase tracking-[0.26em] text-white/85 sm:text-xs sm:tracking-[0.34em] md:text-sm">
             Let&apos;s Plan Your Next Adventure
           </p>
-          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-[-0.055em] mb-8 max-w-5xl mx-auto">
+          <h1 className="mx-auto mb-6 max-w-5xl font-serif text-4xl leading-[0.98] tracking-[-0.055em] sm:text-5xl md:mb-8 md:text-7xl lg:text-8xl">
             Thoughtful Planning,
             <br className="hidden md:block" /> Unforgettable Travel
           </h1>
-          <p className="text-base md:text-xl max-w-2xl mx-auto text-white/85 mb-12 leading-8">
+          <p className="mx-auto mb-9 max-w-2xl text-sm leading-7 text-white/85 sm:text-base md:mb-12 md:text-xl md:leading-8">
             Elevate your travel with curated itineraries, smart logistics, and experiences that feel truly special. We
             will create unforgettable trips together that leave room for discovery, ease, and connection.
           </p>
-          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="mx-auto flex w-full max-w-sm flex-col items-center justify-center gap-4 sm:max-w-none sm:flex-row">
             <Button
               variant="secondary"
               size="lg"
-              className="h-14 w-full justify-center rounded-full bg-white px-10 text-xs uppercase tracking-[0.16em] text-black hover:bg-white/90 sm:w-[178px]"
+              className="h-12 w-full justify-center rounded-full bg-white px-8 text-xs uppercase tracking-[0.16em] text-black hover:bg-white/90 sm:h-14 sm:w-[178px] sm:px-10"
               onClick={() => scrollToSection("about")}
             >
               About Me
@@ -157,7 +157,7 @@ export default function Home() {
             <Button
               variant="outline"
               size="lg"
-              className="h-14 w-full justify-center rounded-full border-white/80 bg-white/5 px-10 text-xs uppercase tracking-[0.16em] text-white backdrop-blur-sm hover:bg-white hover:text-black sm:w-[178px]"
+              className="h-12 w-full justify-center rounded-full border-white/80 bg-white/5 px-8 text-xs uppercase tracking-[0.16em] text-white backdrop-blur-sm hover:bg-white hover:text-black sm:h-14 sm:w-[178px] sm:px-10"
               onClick={openBookTravel}
             >
               Book Travel <ArrowRight className="ml-1 h-4 w-4" />
@@ -166,23 +166,23 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="services" className="py-24 md:py-28 bg-background">
-        <div className="mx-auto w-full max-w-7xl px-6 md:px-10">
+      <section id="services" className="py-16 sm:py-20 md:py-28 bg-background">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-6 lg:gap-12 items-start mb-12">
             <div>
               <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4">What I Do</p>
-              <h2 className="font-serif text-4xl md:text-6xl leading-tight text-foreground mb-6">
+              <h2 className="font-serif text-3xl leading-tight text-foreground mb-5 sm:text-4xl md:text-6xl md:mb-6">
                 The planning experience should feel as good as the trip.
               </h2>
             </div>
-            <p className="max-w-xl text-muted-foreground text-lg leading-8 lg:pt-12">
+            <p className="max-w-xl text-muted-foreground text-base leading-7 sm:text-lg sm:leading-8 lg:pt-12">
               I turn the overwhelming parts of travel into a clear, thoughtful plan: where to stay, what to skip, how
               to move around, and how to make the whole trip feel personal instead of copy-pasted.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-6 lg:gap-8">
-            <div className="relative min-h-[520px] overflow-hidden rounded-[2rem] bg-foreground text-white shadow-[0_24px_80px_rgba(40,33,28,0.14)]">
+            <div className="relative min-h-[420px] overflow-hidden rounded-[1.75rem] bg-foreground text-white shadow-[0_24px_80px_rgba(40,33,28,0.14)] sm:min-h-[520px] sm:rounded-[2rem]">
               <img
                 src="/douglas-schneiders-8m9iqKsiJfU-unsplash.jpg"
                 alt="Paris street scene at golden hour"
@@ -191,9 +191,9 @@ export default function Home() {
                 className="absolute inset-0 h-full w-full object-cover opacity-70"
               />
               <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/25 to-black/75" />
-              <div className="relative z-10 flex h-full flex-col justify-end p-8 md:p-10">
+              <div className="relative z-10 flex h-full flex-col justify-end p-6 sm:p-8 md:p-10">
                 <p className="mb-4 text-xs uppercase tracking-[0.3em] text-white/70">Not Just Booked</p>
-                <h3 className="font-serif text-4xl md:text-5xl leading-tight mb-5">
+                <h3 className="font-serif text-3xl leading-tight mb-4 sm:text-4xl md:text-5xl md:mb-5">
                   Designed around the way you actually want to travel.
                 </h3>
                 <p className="max-w-md leading-7 text-white/80">
@@ -228,13 +228,13 @@ export default function Home() {
                 return (
                   <article
                     key={service.title}
-                    className="group grid grid-cols-[auto_1fr] gap-5 rounded-[1.75rem] border border-border/80 bg-white/85 p-6 md:p-7 shadow-[0_14px_45px_rgba(40,33,28,0.055)] transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-[0_22px_70px_rgba(40,33,28,0.1)]"
+                    className="group grid grid-cols-1 gap-4 rounded-[1.5rem] border border-border/80 bg-white/85 p-5 shadow-[0_14px_45px_rgba(40,33,28,0.055)] transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-[0_22px_70px_rgba(40,33,28,0.1)] sm:grid-cols-[auto_1fr] sm:gap-5 sm:rounded-[1.75rem] md:p-7"
                   >
                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-secondary/70 transition-transform duration-300 group-hover:scale-110">
                       <Icon className="h-6 w-6 stroke-1.5 text-foreground" />
                     </div>
                     <div className="pt-1">
-                      <h3 className="font-serif text-3xl mb-3 leading-tight">{service.title}</h3>
+                      <h3 className="font-serif text-2xl mb-3 leading-tight sm:text-3xl">{service.title}</h3>
                       <p className="text-muted-foreground leading-7">{service.text}</p>
                     </div>
                   </article>
@@ -245,10 +245,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" className="py-24 md:py-28 bg-white">
-        <div className="mx-auto w-full max-w-7xl px-6 md:px-10">
+      <section id="about" className="py-16 sm:py-20 md:py-28 bg-white">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-12 lg:gap-20 items-center">
-            <div className="relative aspect-[3/4] w-full max-w-lg mx-auto lg:mx-0">
+            <div className="relative aspect-[4/5] w-full max-w-sm mx-auto sm:max-w-lg lg:mx-0 lg:aspect-[3/4]">
               <img
                 src="/about-image.jpg"
                 alt="Brookie B Travels founder sitting in a heart-shaped sculpture by the water"
@@ -260,9 +260,9 @@ export default function Home() {
 
             <div>
               <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4">Meet Brooke</p>
-              <h2 className="font-serif text-4xl md:text-6xl leading-tight mb-8">Who is Brookie B Travels?</h2>
+              <h2 className="font-serif text-3xl leading-tight mb-6 sm:text-4xl md:text-6xl md:mb-8">Who is Brookie B Travels?</h2>
 
-              <div className="space-y-6 text-muted-foreground leading-8 text-lg mb-10">
+              <div className="space-y-5 text-muted-foreground leading-7 text-base mb-8 sm:text-lg sm:leading-8 md:mb-10">
                 <p>
                   First and foremost, I&apos;m a lifelong lover of travel. I&apos;ve explored over 20 countries (and
                   counting), and I&apos;m always dreaming up the next destination before I&apos;ve even unpacked my
@@ -289,7 +289,7 @@ export default function Home() {
               </div>
 
               <Button
-                className="uppercase tracking-[0.16em] text-xs h-14 px-10 rounded-full bg-primary hover:bg-primary/90 text-white"
+                className="h-12 w-full rounded-full bg-primary px-6 text-xs uppercase tracking-[0.16em] text-white hover:bg-primary/90 sm:h-14 sm:w-auto sm:px-10"
                 onClick={openBookTravel}
               >
                 Book your next vacation with me <ArrowRight className="ml-2 h-4 w-4" />
@@ -299,18 +299,18 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-24 md:py-28 bg-background">
-        <div className="mx-auto mb-12 max-w-3xl px-6 md:px-10 text-center">
+      <section className="py-16 sm:py-20 md:py-28 bg-background">
+        <div className="mx-auto mb-10 max-w-3xl px-4 text-center sm:px-6 md:px-10 md:mb-12">
           <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4">Travel Styles</p>
-          <h2 className="font-serif text-4xl md:text-6xl mb-6">Trips for every type of traveler</h2>
-          <p className="text-muted-foreground text-lg leading-8">
+          <h2 className="font-serif text-3xl mb-5 sm:text-4xl md:text-6xl md:mb-6">Trips for every type of traveler</h2>
+          <p className="text-muted-foreground text-base leading-7 sm:text-lg sm:leading-8">
             From close-to-home weekends to international trips, once-in-a-lifetime experiences, group travel, and
             cruises — I plan it all. I&apos;m a big believer that neither budget nor time should get in the way of
             booking your trip.
           </p>
         </div>
 
-        <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-6 px-6 md:px-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-5 px-4 sm:grid-cols-2 sm:px-6 md:px-10 lg:grid-cols-4">
           {[
             { src: "/valentin-lacoste-C9YxgJoXcWE-unsplash.jpg", title: "Weekend\nGetaways", alt: "Quiet beach cove for a weekend getaway" },
             { src: "/sara-canonici-7NzZ0btPVdE-unsplash.jpg", title: "International\nTravel", alt: "Cliffside village on the Italian coast" },
@@ -318,7 +318,7 @@ export default function Home() {
             { src: "/lens-by-benji-XjjUrYnjRHQ-unsplash.jpg", title: "Iconic\nCities", alt: "Leaning Tower of Pisa and cathedral" },
           ].map((trip) => (
             <div key={trip.alt} className="group relative">
-              <div className="aspect-[4/5] overflow-hidden relative rounded-3xl shadow-[0_18px_55px_rgba(40,33,28,0.12)]">
+              <div className="aspect-[5/4] overflow-hidden relative rounded-3xl shadow-[0_18px_55px_rgba(40,33,28,0.12)] sm:aspect-[4/5]">
                 <img
                   src={trip.src}
                   alt={trip.alt}
@@ -346,10 +346,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="faq" className="py-24 md:py-28 bg-muted/60">
-        <div className="mx-auto w-full max-w-7xl px-6 md:px-10">
+      <section id="faq" className="py-16 sm:py-20 md:py-28 bg-muted/60">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-12 lg:gap-20 items-center">
-            <div className="relative aspect-[4/5] w-full max-w-lg mx-auto lg:mx-0">
+            <div className="relative aspect-[4/5] w-full max-w-sm mx-auto sm:max-w-lg lg:mx-0">
               <img
                 src="/faq-image.jpg"
                 alt="Brookie B Travels founder looking up inside a sandstone canyon"
@@ -359,16 +359,16 @@ export default function Home() {
               />
             </div>
 
-            <div className="bg-white/80 border border-border/80 rounded-3xl p-8 md:p-10 shadow-[0_20px_70px_rgba(40,33,28,0.07)]">
-              <div className="mb-12">
+            <div className="bg-white/80 border border-border/80 rounded-3xl p-5 sm:p-8 md:p-10 shadow-[0_20px_70px_rgba(40,33,28,0.07)]">
+              <div className="mb-8 md:mb-12">
                 <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4">Good to Know</p>
-                <h2 className="font-serif text-4xl md:text-6xl mb-4">Frequently Asked</h2>
+                <h2 className="font-serif text-3xl sm:text-4xl md:text-6xl mb-4">Frequently Asked</h2>
                 <div className="w-12 h-px bg-foreground/30" />
               </div>
 
               <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1" className="border-b border-border py-3">
-              <AccordionTrigger className="font-serif text-xl md:text-2xl hover:no-underline text-left">
+              <AccordionTrigger className="font-serif text-lg sm:text-xl md:text-2xl hover:no-underline text-left">
                 How Much Will It Cost To Use Your Services?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground font-light leading-relaxed text-base">
@@ -379,7 +379,7 @@ export default function Home() {
             </AccordionItem>
 
             <AccordionItem value="item-2" className="border-b border-border py-3">
-              <AccordionTrigger className="font-serif text-xl md:text-2xl hover:no-underline text-left">
+              <AccordionTrigger className="font-serif text-lg sm:text-xl md:text-2xl hover:no-underline text-left">
                 What Services Do You Offer?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground font-light leading-relaxed text-base">
@@ -390,7 +390,7 @@ export default function Home() {
             </AccordionItem>
 
             <AccordionItem value="item-3" className="border-b border-border py-3">
-              <AccordionTrigger className="font-serif text-xl md:text-2xl hover:no-underline text-left">
+              <AccordionTrigger className="font-serif text-lg sm:text-xl md:text-2xl hover:no-underline text-left">
                 Why Should I Use A Travel Advisor Instead Of Planning A Trip Myself?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground font-light leading-relaxed text-base">
@@ -403,7 +403,7 @@ export default function Home() {
             </AccordionItem>
 
             <AccordionItem value="item-4" className="border-b border-border py-3">
-              <AccordionTrigger className="font-serif text-xl md:text-2xl hover:no-underline text-left">
+              <AccordionTrigger className="font-serif text-lg sm:text-xl md:text-2xl hover:no-underline text-left">
                 Do You Work With All Budgets?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground font-light leading-relaxed text-base">
@@ -415,7 +415,7 @@ export default function Home() {
             </AccordionItem>
 
             <AccordionItem value="item-5" className="border-b border-border py-3">
-              <AccordionTrigger className="font-serif text-xl md:text-2xl hover:no-underline text-left">
+              <AccordionTrigger className="font-serif text-lg sm:text-xl md:text-2xl hover:no-underline text-left">
                 Can You Help If I Already Booked Part Of My Trip?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground font-light leading-relaxed text-base">
@@ -425,7 +425,7 @@ export default function Home() {
             </AccordionItem>
 
             <AccordionItem value="item-6" className="border-b border-border py-3 border-b-transparent">
-              <AccordionTrigger className="font-serif text-xl md:text-2xl hover:no-underline text-left">
+              <AccordionTrigger className="font-serif text-lg sm:text-xl md:text-2xl hover:no-underline text-left">
                 What If Something Goes Wrong During My Trip?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground font-light leading-relaxed text-base">
@@ -439,14 +439,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="blog" className="py-20 md:py-24 bg-background">
-        <div className="mx-auto w-full max-w-7xl px-6 md:px-10">
+      <section id="blog" className="py-16 sm:py-20 md:py-24 bg-background">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-10">
           <div className="max-w-3xl mb-10">
             <p className="text-sm uppercase tracking-[0.3em] text-muted-foreground mb-4">
               Travel Stories & Guides
             </p>
-            <h2 className="font-serif text-4xl md:text-6xl mb-6">Brookie B Travels Blog</h2>
-            <p className="text-muted-foreground text-lg leading-8">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-6xl mb-5 md:mb-6">Brookie B Travels Blog</h2>
+            <p className="text-muted-foreground text-base leading-7 sm:text-lg sm:leading-8">
               Personal travel stories, practical travel planning advice, destination notes, and thoughtful guides for
               travelers who want more than a checklist.
             </p>
@@ -504,9 +504,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-background px-6 py-20 md:px-10 md:py-24">
+      <section className="bg-background px-4 py-16 sm:px-6 sm:py-20 md:px-10 md:py-24">
         <div className="mx-auto grid w-full max-w-7xl overflow-hidden rounded-[2rem] bg-foreground text-white shadow-[0_24px_90px_rgba(40,33,28,0.16)] lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="relative min-h-[360px] overflow-hidden lg:min-h-[520px]">
+          <div className="relative min-h-[320px] overflow-hidden sm:min-h-[360px] lg:min-h-[520px]">
             <img
               src="/johannes-kopf-u2s7GQRJELM-unsplash.jpg"
               alt="A scenic mountain village by the water"
@@ -515,24 +515,24 @@ export default function Home() {
               className="absolute inset-0 h-full w-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent" />
-            <div className="absolute bottom-8 left-8 right-8">
+            <div className="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-8 sm:right-8">
               <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/75">
                 Travel, Made Personal
               </p>
-              <p className="max-w-sm font-serif text-3xl leading-tight md:text-4xl">
+              <p className="max-w-sm font-serif text-2xl leading-tight sm:text-3xl md:text-4xl">
                 The best trips feel effortless, but they rarely happen by accident.
               </p>
             </div>
           </div>
 
-          <div className="flex flex-col justify-center p-8 md:p-12 lg:p-14">
+          <div className="flex flex-col justify-center p-6 sm:p-8 md:p-12 lg:p-14">
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-white/60">
               Ready to See the World?
             </p>
-            <h2 className="mb-6 font-serif text-4xl leading-tight md:text-6xl">
+            <h2 className="mb-5 font-serif text-3xl leading-tight sm:text-4xl md:text-6xl md:mb-6">
               Let&apos;s turn the trip in your head into a plan you can actually book.
             </h2>
-            <p className="mb-8 text-lg leading-8 text-white/75">
+            <p className="mb-8 text-base leading-7 text-white/75 sm:text-lg sm:leading-8">
               Send over the destination, the vibe, the budget, or even just the feeling you want from the trip. I&apos;ll
               help shape the details into something thoughtful, beautiful, and easier to say yes to.
             </p>
@@ -553,7 +553,7 @@ export default function Home() {
             </div>
 
             <Button
-              className="h-14 w-fit rounded-full bg-white px-10 text-xs uppercase tracking-[0.16em] text-primary hover:bg-white/90"
+              className="h-12 w-full rounded-full bg-white px-8 text-xs uppercase tracking-[0.16em] text-primary hover:bg-white/90 sm:h-14 sm:w-fit sm:px-10"
               onClick={openBookTravel}
             >
               Contact us <ArrowRight className="ml-2 h-4 w-4" />
@@ -562,13 +562,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="overflow-hidden bg-white py-16 md:py-20">
-        <div className="mx-auto mb-10 flex w-full max-w-7xl flex-col justify-between gap-6 px-6 md:flex-row md:items-end md:px-10">
+      <section className="overflow-hidden bg-white py-14 sm:py-16 md:py-20">
+        <div className="mx-auto mb-8 flex w-full max-w-7xl flex-col justify-between gap-6 px-4 sm:px-6 md:mb-10 md:flex-row md:items-end md:px-10">
           <div>
             <p className="mb-4 text-xs uppercase tracking-[0.3em] text-muted-foreground">
               Follow Along
             </p>
-            <h2 className="font-serif text-4xl leading-tight md:text-5xl">Travel notes from Instagram</h2>
+            <h2 className="font-serif text-3xl leading-tight sm:text-4xl md:text-5xl">Travel notes from Instagram</h2>
           </div>
           <a
             href="https://www.instagram.com/brookiebtravels/"

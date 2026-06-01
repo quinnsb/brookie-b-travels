@@ -16,16 +16,16 @@ const footerLinks = [
 
 export function SiteFooter() {
   return (
-    <footer className="bg-white py-16 border-t border-border/70">
-      <div className="mx-auto w-full max-w-7xl px-6 md:px-10">
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-10 items-center">
+    <footer className="bg-white py-14 border-t border-border/70 sm:py-16">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-10">
+        <div className="grid grid-cols-1 gap-8 items-center md:grid-cols-[1fr_auto_1fr] md:gap-10">
           <div className="flex justify-center md:justify-start">
-            <a href="/" className="font-serif text-3xl leading-none tracking-[-0.04em] text-foreground">
+            <a href="/" className="font-serif text-2xl leading-none tracking-[-0.04em] text-foreground sm:text-3xl">
               Brookie B Travels
             </a>
           </div>
 
-          <nav aria-label="Footer menu" className="flex flex-wrap justify-center gap-x-8 gap-y-3">
+          <nav aria-label="Footer menu" className="flex flex-wrap justify-center gap-x-4 gap-y-3 sm:gap-x-8">
             {footerLinks.map((link) => (
               <a
                 key={link.label}

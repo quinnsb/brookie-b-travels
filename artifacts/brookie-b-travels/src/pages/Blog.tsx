@@ -42,10 +42,10 @@ export default function Blog() {
   const posts = [...adminPosts, ...blogPosts.filter((post) => !adminPosts.some((adminPost) => adminPost.slug === post.slug))];
 
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main className="min-h-screen overflow-x-hidden bg-background text-foreground">
       <header className="border-b border-border/70 bg-background/90 backdrop-blur-xl">
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-6 px-6 py-6 md:px-10">
-          <Link href="/" className="font-serif text-2xl leading-none tracking-[-0.04em] text-foreground">
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-5 sm:px-6 md:px-10 md:py-6">
+          <Link href="/" className="font-serif text-xl leading-none tracking-[-0.04em] text-foreground sm:text-2xl">
             Brookie B Travels
           </Link>
 
@@ -68,7 +68,7 @@ export default function Blog() {
           </nav>
 
           <Button
-            className="uppercase tracking-[0.16em] text-xs h-11 px-6 rounded-full"
+            className="h-10 rounded-full px-4 text-[0.65rem] uppercase tracking-[0.14em] sm:h-11 sm:px-6 sm:text-xs sm:tracking-[0.16em]"
             onClick={openBookTravel}
           >
             Book Travel
@@ -76,28 +76,28 @@ export default function Blog() {
         </div>
       </header>
 
-      <section className="py-16 md:py-24">
-        <div className="mx-auto w-full max-w-7xl px-6 md:px-10">
-          <div className="max-w-3xl mb-14">
+      <section className="py-12 sm:py-16 md:py-24">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-10">
+          <div className="max-w-3xl mb-10 md:mb-14">
             <p className="text-xs uppercase tracking-[0.34em] text-muted-foreground mb-5">
               Travel Stories & Guides
             </p>
-            <h1 className="font-serif text-5xl md:text-7xl leading-[0.98] tracking-[-0.055em] mb-6">
+            <h1 className="font-serif text-4xl leading-[0.98] tracking-[-0.055em] mb-5 sm:text-5xl md:text-7xl md:mb-6">
               Brookie B Travels Blog
             </h1>
-            <p className="text-muted-foreground text-lg md:text-xl leading-8">
+            <p className="text-muted-foreground text-base leading-7 sm:text-lg md:text-xl md:leading-8">
               Personal travel stories, practical planning advice, destination notes, and thoughtful guides for travelers
               who want more than a checklist.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
             {posts.map((post) => (
               <article
                 key={post.slug}
                 className="bg-white border border-border/80 rounded-3xl shadow-[0_16px_45px_rgba(40,33,28,0.06)] overflow-hidden"
               >
-                <Link href={`/blog/${post.slug}`} className="block h-72 overflow-hidden">
+                <Link href={`/blog/${post.slug}`} className="block h-56 overflow-hidden sm:h-72">
                   <img
                     src={post.featuredImage}
                     alt={post.featuredImageAlt}
@@ -107,7 +107,7 @@ export default function Blog() {
                   />
                 </Link>
 
-                <div className="p-7 md:p-8">
+                <div className="p-5 sm:p-7 md:p-8">
                   <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground mb-5">
                     <time dateTime={post.date}>{post.displayDate}</time>
                     <span aria-hidden="true">•</span>
@@ -116,7 +116,7 @@ export default function Blog() {
                     <span>{post.readingTime}</span>
                   </div>
 
-                  <h2 className="font-serif text-3xl md:text-4xl mb-4">
+                  <h2 className="font-serif text-2xl mb-4 sm:text-3xl md:text-4xl">
                     <Link href={`/blog/${post.slug}`} className="hover:text-muted-foreground transition-colors">
                       {post.title}
                     </Link>

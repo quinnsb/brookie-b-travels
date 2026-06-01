@@ -130,11 +130,11 @@ export default function BlogPost() {
   }
 
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main className="min-h-screen overflow-x-hidden bg-background text-foreground">
       <header className="border-b border-border/70 bg-background/90 backdrop-blur-xl">
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-6 px-6 py-6 md:px-10">
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-5 sm:px-6 md:px-10 md:py-6">
           <Link href="/" className="inline-flex items-center text-foreground">
-            <span className="font-serif text-2xl leading-none tracking-[-0.04em]">
+            <span className="font-serif text-xl leading-none tracking-[-0.04em] sm:text-2xl">
               Brookie B Travels
             </span>
           </Link>
@@ -158,7 +158,7 @@ export default function BlogPost() {
           </nav>
 
           <Button
-            className="uppercase tracking-[0.16em] text-xs h-11 px-6 rounded-full"
+            className="h-10 rounded-full px-4 text-[0.65rem] uppercase tracking-[0.14em] sm:h-11 sm:px-6 sm:text-xs sm:tracking-[0.16em]"
             onClick={openBookTravel}
           >
             Book Travel
@@ -166,7 +166,7 @@ export default function BlogPost() {
         </div>
       </header>
 
-      <article className="mx-auto w-full max-w-7xl px-6 py-16 md:px-10 md:py-24">
+      <article className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 sm:py-16 md:px-10 md:py-24">
         <div className="max-w-3xl mx-auto">
           <Link
             href="/blog"
@@ -180,7 +180,7 @@ export default function BlogPost() {
             <p className="text-xs uppercase tracking-[0.34em] text-muted-foreground mb-5">
               Travel Stories
             </p>
-            <h1 className="font-serif text-5xl md:text-7xl leading-[0.98] tracking-[-0.055em] mb-6">
+            <h1 className="font-serif text-4xl leading-[0.98] tracking-[-0.055em] mb-5 sm:text-5xl md:text-7xl md:mb-6">
               {post.title}
             </h1>
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
@@ -192,7 +192,7 @@ export default function BlogPost() {
             </div>
           </header>
 
-          <p className="text-2xl md:text-3xl font-serif leading-snug text-foreground mb-12">
+          <p className="text-xl font-serif leading-snug text-foreground mb-10 sm:text-2xl md:text-3xl md:mb-12">
             {post.excerpt}
           </p>
 
@@ -219,7 +219,7 @@ export default function BlogPost() {
               building a trip that feels thoughtful, personal, and easy to enjoy.
             </p>
             <Button
-              className="uppercase tracking-[0.16em] text-xs h-14 px-10 rounded-full"
+              className="h-12 w-full rounded-full px-8 text-xs uppercase tracking-[0.16em] sm:h-14 sm:w-auto sm:px-10"
               onClick={openBookTravel}
             >
               Book Travel <ArrowRight className="ml-2 h-4 w-4" />
@@ -229,13 +229,13 @@ export default function BlogPost() {
       </article>
 
       {relatedPosts.length > 0 && (
-        <section className="mx-auto w-full max-w-7xl px-6 pb-20 md:px-10 md:pb-24">
+        <section className="mx-auto w-full max-w-7xl px-4 pb-16 sm:px-6 md:px-10 md:pb-24">
           <div className="mb-8 flex flex-col justify-between gap-4 border-t border-border pt-10 md:flex-row md:items-end">
             <div>
               <p className="mb-3 text-xs uppercase tracking-[0.3em] text-muted-foreground">
                 Keep Reading
               </p>
-              <h2 className="font-serif text-4xl md:text-5xl">More from the blog</h2>
+              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl">More from the blog</h2>
             </div>
             <Link
               href="/blog"

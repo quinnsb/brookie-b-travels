@@ -165,10 +165,10 @@ export default function AdminBlog() {
   }
 
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main className="min-h-screen overflow-x-hidden bg-background text-foreground">
       <header className="border-b border-border/70 bg-background/90 backdrop-blur-xl">
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-6 px-6 py-6 md:px-10">
-          <Link href="/" className="font-serif text-2xl leading-none tracking-[-0.04em] text-foreground">
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-5 sm:px-6 md:px-10 md:py-6">
+          <Link href="/" className="font-serif text-xl leading-none tracking-[-0.04em] text-foreground sm:text-2xl">
             Brookie B Travels
           </Link>
           <Link
@@ -180,12 +180,12 @@ export default function AdminBlog() {
         </div>
       </header>
 
-      <section className="mx-auto w-full max-w-4xl px-6 py-16 md:px-10">
+      <section className="mx-auto w-full max-w-4xl px-4 py-12 sm:px-6 sm:py-16 md:px-10">
         <div className="mb-10">
           <p className="text-xs uppercase tracking-[0.34em] text-muted-foreground mb-4">
             Admin
           </p>
-          <h1 className="font-serif text-5xl md:text-6xl leading-tight mb-5">Add a Blog Post</h1>
+          <h1 className="font-serif text-4xl leading-tight mb-5 sm:text-5xl md:text-6xl">Add a Blog Post</h1>
           <p className="text-muted-foreground leading-8">
             Log in, draft a post, upload a featured image, and publish it to the blog. Paragraphs are created from blank
             lines in the body field, and images are compressed before upload.
@@ -193,7 +193,7 @@ export default function AdminBlog() {
         </div>
 
         {!authToken && (
-          <form onSubmit={handleLogin} className="space-y-6 rounded-3xl border border-border/80 bg-white p-6 md:p-8">
+          <form onSubmit={handleLogin} className="space-y-6 rounded-3xl border border-border/80 bg-white p-5 sm:p-6 md:p-8">
             <div>
               <h2 className="mb-3 font-serif text-3xl">Blog Admin Login</h2>
               <p className="text-sm leading-6 text-muted-foreground">
@@ -237,7 +237,7 @@ export default function AdminBlog() {
         )}
 
         {authToken && (
-        <form onSubmit={handleSubmit} className="space-y-6 rounded-3xl border border-border/80 bg-white p-6 md:p-8">
+        <form onSubmit={handleSubmit} className="space-y-6 rounded-3xl border border-border/80 bg-white p-5 sm:p-6 md:p-8">
           <div className="flex flex-col justify-between gap-4 border-b border-border pb-6 md:flex-row md:items-center">
             <p className="text-sm text-muted-foreground">Logged in as blog admin.</p>
             <Button
